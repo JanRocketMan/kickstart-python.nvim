@@ -25,15 +25,35 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- File manipulation hotkeys
+-- vim.keymap.set('n', '<leader>o', vim.cmd.Ex, { desc = 'Switch to file expl[O]rer' })
+vim.keymap.set('n', '<leader>i', vim.cmd.write, { desc = 'Save current f[I]le' })
+-- vim.keymap.set('n', '<C-b>', vim.cmd('MiniFiles.open()'))
+vim.keymap.set('n', '<leader>o', function()
+  require('mini.files').open()
+end, { desc = '[O]pen file explorer' })
+
+-- Jumping to context
+vim.keymap.set('n', '<leader>j', function()
+  require('treesitter-context').go_to_context(vim.v.count1)
+end, { silent = true, desc = '[J]ump to upper context' })
+
+-- Create new tab hotkey
+vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>')
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Vertical navigation hotkeys
+vim.keymap.set('n', '<M-left>', '5<left>')
+vim.keymap.set('n', '<M-right>', '5<right>')
+vim.keymap.set('n', '<M-down>', '5<down>')
+vim.keymap.set('n', '<M-up>', '5<up>')
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

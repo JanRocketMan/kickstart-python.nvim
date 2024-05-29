@@ -17,6 +17,22 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+      -- File navigation and project overview
+      require('mini.files').setup {
+        mappings = {
+          close = '<ESC>',
+          go_in = 'n',
+          go_in_plus = '<Enter>',
+          go_out = 't',
+          go_out_plus = '<BS>',
+          reset = 'q',
+          reveal_cwd = '@',
+          show_help = 'g?',
+          synchronize = '=',
+          trim_left = '<',
+          trim_right = '>',
+        },
+      }
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
