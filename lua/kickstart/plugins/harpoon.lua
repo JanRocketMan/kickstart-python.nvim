@@ -3,7 +3,7 @@ return {
   branch = 'harpoon2',
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
-    require('harpoon'):setup()
+    require('harpoon'):setup { settings = { ui_nav_wrap = true } }
   end,
   keys = {
     {
@@ -24,14 +24,14 @@ return {
     {
       '<leader>n',
       function()
-        require('harpoon'):list():next()
+        require('harpoon'):list():next { ui_nav_wrap = true }
       end,
       desc = 'harpoon to [N]ext mark',
     },
     {
       '<leader>p',
       function()
-        require('harpoon'):list():prev()
+        require('harpoon'):list():prev { ui_nav_wrap = true }
       end,
       desc = 'harpoon to [P]rev mark',
     },
