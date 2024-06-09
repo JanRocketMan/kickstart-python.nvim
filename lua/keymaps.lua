@@ -19,30 +19,31 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 -- File manipulation hotkeys
--- vim.keymap.set('n', '<leader>o', vim.cmd.Ex, { desc = 'Switch to file expl[O]rer' })
 vim.keymap.set('n', '<leader>i', vim.cmd.write, { desc = 'Save current f[I]le' })
--- vim.keymap.set('n', '<C-b>', vim.cmd('MiniFiles.open()'))
-vim.keymap.set('n', '<leader>o', function()
+vim.keymap.set('n', '<leader>O', function()
   require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
-end, { desc = '[O]pen file explorer' })
-vim.keymap.set('n', '<leader>P', function()
+end, { desc = '[O]pen current folder in file explorer' })
+vim.keymap.set('n', '<leader>o', function()
   require('mini.files').open(vim.loop.cwd(), true)
-end, { desc = 'Open [P]roject folder' })
+end, { desc = '[O]pen current file tree in file explorer' })
+
+-- Open file tree at startup
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    require('mini.files').open(vim.loop.cwd(), true)
+  end,
+})
+vim.keymap.set('n', '<PageUp>', '<C-u>zz', { desc = 'Move [D]own' })
+vim.keymap.set('n', '<PageDown>', '<C-d>zz', { desc = 'Move [U]p' })
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- Jumping to context
 vim.keymap.set('n', '<leader>j', function()
   require('treesitter-context').go_to_context(vim.v.count1)
-end, { silent = true, desc = '[J]ump to upper context' })
+end, { silent = true, desc = '[J]ump to treesitter context' })
 
--- Create new tab hotkey
-vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>')
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -52,11 +53,6 @@ vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'Move focus to the right
 vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Vertical navigation hotkeys
-vim.keymap.set('n', '<M-left>', '5<left>')
-vim.keymap.set('n', '<M-right>', '5<right>')
-vim.keymap.set('n', '<M-down>', '5<down>')
-vim.keymap.set('n', '<M-up>', '5<up>')
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

@@ -35,33 +35,5 @@ return {
       end,
       desc = 'harpoon to [P]rev mark',
     },
-    {
-      '<leader>4',
-      function()
-        require('harpoon'):list():select(1)
-      end,
-      desc = 'harpoon to mark 1',
-    },
-    {
-      '<leader>5',
-      function()
-        require('harpoon'):list():select(2)
-      end,
-      desc = 'harpoon to mark 2',
-    },
-    {
-      '<leader>6',
-      function()
-        require('harpoon'):list():select(3)
-      end,
-      desc = 'harpoon to mark 3',
-    },
-    {
-      '<leader>=',
-      function()
-        require('harpoon'):list():select(4)
-      end,
-      desc = 'harpoon to mark 4',
-    },
   },
 }
