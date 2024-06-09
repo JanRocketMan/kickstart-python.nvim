@@ -28,12 +28,5 @@ return {
       end,
       desc = 'harpoon to [N]ext mark',
     },
-    {
-      '<leader>p',
-      function()
-        require('harpoon'):list():prev { ui_nav_wrap = true }
-      end,
-      desc = 'harpoon to [P]rev mark',
-    },
   },
 }

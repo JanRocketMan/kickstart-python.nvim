@@ -34,10 +34,14 @@ vim.api.nvim_create_autocmd('VimEnter', {
     require('mini.files').open(vim.loop.cwd(), true)
   end,
 })
-vim.keymap.set('n', '<PageUp>', '<C-u>zz', { desc = 'Move [D]own' })
-vim.keymap.set('n', '<PageDown>', '<C-d>zz', { desc = 'Move [U]p' })
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- A set of modified custom mappings from @ThePrimeagen
+vim.keymap.set('n', '<PageUp>', '<C-u>zz', { desc = 'Move [U]p with centering' })
+vim.keymap.set('n', '<PageDown>', '<C-d>zz', { desc = 'Move [D]own with centering' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Goto next with centering' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Goto prev with centering' })
+vim.keymap.set('n', '<leader>p', '"_dP', { desc = 'Paste while keeping buffer' })
+vim.keymap.set('n', '<leader>S', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Multi-replace current word' })
 
 -- Jumping to context
 vim.keymap.set('n', '<leader>j', function()
