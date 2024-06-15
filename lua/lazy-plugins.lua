@@ -51,6 +51,7 @@ require('lazy').setup({
   require 'kickstart/plugins/treesitter',
 
   require 'kickstart/plugins/treesitter_context',
+  require 'kickstart/plugins/git_dev',
 
   require 'kickstart/plugins/harpoon',
   require 'kickstart/plugins/flash',
